@@ -43,10 +43,13 @@ function createCharacterCard (imagePath, nameCharacter, valueStatus, valueSpecie
     const cardBody = document.createElement('div')
     const title = document.createElement('h5')
     const cardData = document.createElement('div')
+    const keyStatus = document.createElement('span')
+    const keySpecies = document.createElement('span')
+    const keyGender = document.createElement('span')
+
     const rowValuesStatus = document.createElement("div")
     const rowValuesSpecies = document.createElement("div")
     const rowValuesGender = document.createElement("div")
-    const key = document.createElement("span")
     const status = document.createElement("span")
     const species = document.createElement("span")
     const gender = document.createElement("span")
@@ -71,25 +74,24 @@ function createCharacterCard (imagePath, nameCharacter, valueStatus, valueSpecie
     img.src=imagePath
     img.alt = nameCharacter
     title.textContent = nameCharacter
-    key.textContent = "Status:"
     status.textContent = valueStatus
     species.textContent= valueSpecies
     gender.textContent = valueGender
     button.href = href
     button.textContent ="Detail"
-
+    keyStatus.textContent = "Status:"
+    keySpecies.textContent = "Species:"
+    keyGender.textContent = "Gender:"
     //appendChild - вставляємо теги один в одний
-    rowValuesStatus.appendChild(key)
+    rowValuesStatus.appendChild(keyStatus)
     rowValuesStatus.appendChild(status)
     cardData.appendChild(rowValuesStatus)
 
-    key.textContent = "Species:"
-    rowValuesSpecies.appendChild(key)
+    rowValuesSpecies.appendChild(keySpecies)
     rowValuesSpecies.appendChild(species)
     cardData.appendChild(rowValuesSpecies)
 
-    key.textContent = "Gender:"
-    rowValuesGender.appendChild(key)
+    rowValuesGender.appendChild(keyGender)
     rowValuesGender.appendChild(gender)
     cardData.appendChild(rowValuesGender)
 
