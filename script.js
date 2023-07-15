@@ -36,7 +36,7 @@ const character =  {
 //   </div>
 // </div>
 
-function createCharacterCard (imagePath, nameCharacter, valueStatus, valueSpecies, valueGender, href) {
+function createCharacterCard (pers) {
     //створюємо теги
     const card = document.createElement('div')
     const img = document.createElement('img')
@@ -71,17 +71,19 @@ function createCharacterCard (imagePath, nameCharacter, valueStatus, valueSpecie
 
     card.style.width = "18rem"
     // вставка данних
-    img.src=imagePath
-    img.alt = nameCharacter
-    title.textContent = nameCharacter
-    status.textContent = valueStatus
-    species.textContent= valueSpecies
-    gender.textContent = valueGender
-    button.href = href
+    img.src=pers.image
+    img.alt = pers.name
+    title.textContent = pers.name
+    status.textContent = pers.status
+    species.textContent= pers.species
+    gender.textContent = pers.gender
+    // button.href = pers.url
     button.textContent ="Detail"
     keyStatus.textContent = "Status:"
     keySpecies.textContent = "Species:"
     keyGender.textContent = "Gender:"
+    button.setAttribute("data-bs-toggle", "modal")
+    button.setAttribute("data-bs-target", "#exampleModal")
     //appendChild - вставляємо теги один в одний
     rowValuesStatus.appendChild(keyStatus)
     rowValuesStatus.appendChild(status)
@@ -103,6 +105,88 @@ function createCharacterCard (imagePath, nameCharacter, valueStatus, valueSpecie
     // додавання картки на сторінку
     const main = document.querySelector('main')
     main.appendChild(card)
+
 }
 
-createCharacterCard(character.image,character.name, character.status, character.species,character.gender, character.url )
+fetch("https://rickandmortyapi.com/api/character")
+  .then((res) => res.json())
+  .then((res) => {
+    const characters = res.results
+      characters.forEach(item => {
+        createCharacterCard(item)
+      })
+  })
+
+// стрілочні функції
+// const sumTwoNumbers = (x,y) => {
+//   console.log(x+y)
+// }
+
+// const ourGroup = ["Ivan", "Sofia", "Artem"]
+// ourGroup.forEach((name) => {
+//   console.log(name)
+// })
+
+// const pers = {
+//   id: 4,
+//   name: "Beth Smith",
+//   status: "Alive",
+//   species: "Human",
+//   type: "",
+//   gender: "Female",
+//   origin: {
+//     name: "Earth (Replacement Dimension)",
+//     url: "https://rickandmortyapi.com/api/location/20",
+//   },
+//   location: {
+//     name: "Earth (Replacement Dimension)",
+//     url: "https://rickandmortyapi.com/api/location/20",
+//   },
+//   image: "https://rickandmortyapi.com/api/character/avatar/4.jpeg",
+//   episode: [
+//     "https://rickandmortyapi.com/api/episode/6",
+//     "https://rickandmortyapi.com/api/episode/7",
+//     "https://rickandmortyapi.com/api/episode/8",
+//     "https://rickandmortyapi.com/api/episode/9",
+//     "https://rickandmortyapi.com/api/episode/10",
+//     "https://rickandmortyapi.com/api/episode/11",
+//     "https://rickandmortyapi.com/api/episode/12",
+//     "https://rickandmortyapi.com/api/episode/14",
+//     "https://rickandmortyapi.com/api/episode/15",
+//     "https://rickandmortyapi.com/api/episode/16",
+//     "https://rickandmortyapi.com/api/episode/18",
+//     "https://rickandmortyapi.com/api/episode/19",
+//     "https://rickandmortyapi.com/api/episode/20",
+//     "https://rickandmortyapi.com/api/episode/21",
+//     "https://rickandmortyapi.com/api/episode/22",
+//     "https://rickandmortyapi.com/api/episode/23",
+//     "https://rickandmortyapi.com/api/episode/24",
+//     "https://rickandmortyapi.com/api/episode/25",
+//     "https://rickandmortyapi.com/api/episode/26",
+//     "https://rickandmortyapi.com/api/episode/27",
+//     "https://rickandmortyapi.com/api/episode/28",
+//     "https://rickandmortyapi.com/api/episode/29",
+//     "https://rickandmortyapi.com/api/episode/30",
+//     "https://rickandmortyapi.com/api/episode/31",
+//     "https://rickandmortyapi.com/api/episode/32",
+//     "https://rickandmortyapi.com/api/episode/33",
+//     "https://rickandmortyapi.com/api/episode/34",
+//     "https://rickandmortyapi.com/api/episode/35",
+//     "https://rickandmortyapi.com/api/episode/36",
+//     "https://rickandmortyapi.com/api/episode/38",
+//     "https://rickandmortyapi.com/api/episode/39",
+//     "https://rickandmortyapi.com/api/episode/40",
+//     "https://rickandmortyapi.com/api/episode/41",
+//     "https://rickandmortyapi.com/api/episode/42",
+//     "https://rickandmortyapi.com/api/episode/43",
+//     "https://rickandmortyapi.com/api/episode/44",
+//     "https://rickandmortyapi.com/api/episode/45",
+//     "https://rickandmortyapi.com/api/episode/46",
+//     "https://rickandmortyapi.com/api/episode/47",
+//     "https://rickandmortyapi.com/api/episode/48",
+//     "https://rickandmortyapi.com/api/episode/49",
+//     "https://rickandmortyapi.com/api/episode/51",
+//   ],
+//   url: "https://rickandmortyapi.com/api/character/4",
+//   created: "2017-11-04T19:22:43.665Z",
+// }
